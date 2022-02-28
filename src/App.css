@@ -2,6 +2,35 @@
   text-align: center;
 }
 
+a {
+  margin-left: 10px;
+}
+
+.addressForm {
+  display: flex;
+  justify-content: center;
+}
+
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+}
+
+form {
+  text-align: center;
+}
+
+.select-container {
+  width: 1px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
