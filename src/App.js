@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import './App.css'
+import CountrySelector from './components/CountrySelector'
+import CountrySpecificForm from './components/CountrySpecific'
+import CrossCountryForm from './components/CrossCountry'
 
 const App = () => {
   // Layout String parsed into a 2D Array 
@@ -16,7 +19,14 @@ const App = () => {
     postalCode: "Zip Code"
   }
 
-  const [formValues, setFormValues] = useState([["firstName", "lastName"], ["address1"], ["address2"], ["city", "zone", "postalCode" ]])
+  const styles = {
+    container: css => ({ ...css, width: '100%', padding: '5px' }),
+    control: css => ({...css, width: '100%'}),
+    input: css => ({...css}),
+    option: css => ({...css})
+};
+
+  const [formValues, setFormValues] = useState([["firstName", "lastName"], ["address1"], ["address2"], ["zone", "city", "postalCode"]])
 
   const [addressData, setAddressData] = useState({
     coutryISO: 0,
@@ -31,12 +41,21 @@ const App = () => {
 
   const options = [
     { value: 'arkansas', label: 'Arkansas' },
-    { value: 'washington', label: 'Washington'} 
+    { value: 'washington', label: 'Dominican Republic'} 
   ]
 
-  let handleChangeNew = (label, e) => {
+  let handleChangeInput = (label, e) => {
     let updatedState = {}
     updatedState[label] = e.target.value;
+    setAddressData({
+      ...addressData,
+      ...updatedState
+    })
+  }
+
+  let handleChangeDrop = (label, e) => {
+    let updatedState = {}
+    updatedState[label] = e.value;
     setAddressData({
       ...addressData,
       ...updatedState
@@ -49,21 +68,9 @@ const App = () => {
   }
 
   return (
-  <div className="addressForm">
-      <form onSubmit={handleSubmit}>
-        {formValues.map((element, index) => (
-          <div className="form-inline" key={index}>
-          {element.map((label, ind) => (
-            <>
-              <input type="text" name="name" placeholder={labels[label]} value={ addressData[label] || ""} onChange={e => handleChangeNew(label, e)} key={ind} />
-            </>
-          ))}
-          </div>
-        ))}
-        <div className="button-section">
-            <button className="button submit" type="submit">Submit</button>
-        </div>
-    </form>
+  <div className="App">
+    <CountrySpecificForm />
+
   </div>
   )
 }
