@@ -51,6 +51,7 @@ const ResultPage = () => {
           <><span>{obj.address2}</span><br /></>
         }
         <span>{obj.city} {obj.zone} {obj.postalCode}</span><br />
+        <span>{obj.countryName}</span><br />
       </address>
     ))}
 
