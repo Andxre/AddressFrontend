@@ -30,6 +30,19 @@ a {
   justify-content: center;
 }
 
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-result {
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
 input {
   width: 100%;
   padding: 5px;

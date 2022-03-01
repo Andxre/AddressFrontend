@@ -1,14 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import '../App.css'
+import { useNavigate } from 'react-router-dom'
 
 const CrossCountryForm = () => {
+  const navigate = useNavigate();
+  const [countries, setCountries] = useState([])
+
+    // Country
+    useEffect(() => {
+      fetch("https://localhost:5001/Country", {
+        method: 'GET',
+      })
+      .then(res => res.json())
+      .then( (result) => {
+        const countries =result.map((obj) => {
+          return {
+            value: obj.countryIso,
+            label: obj.countryName
+          }
+        })
+        setCountries(countries);
+      })
+    }, []);
 
   const labels = {
     firstName: "First Name",
     lastName: "Last Name",
     address1: "Street/Building/Address Line 1",
-    address2: "Apt./Suite/etc.",
+    address2: "Apt/Suite/Address Line 2",
     zone: "Zone/Province/State",
     city: "City/Town/Locality",
     postalCode: "Zip/Postal Code",
@@ -65,7 +85,7 @@ const CrossCountryForm = () => {
 
   let handleSubmit = (event) => {
       event.preventDefault();
-      alert(JSON.stringify(addressData));
+      navigate("/results", {state: addressData})
   }
 
   return (
@@ -77,7 +97,7 @@ const CrossCountryForm = () => {
             <>
               {label !== "country"
               ? <input type="text" name="name" placeholder={labels[label]} value={ addressData[label] || ""} onChange={e => handleChangeInput(label, e)} key={ind} />
-              : <Select styles={styles} isMulti={true} options={options} placeholder={labels[label]} onChange={e => handleChangeDrop(e)} key={ind} />
+              : <Select styles={styles} isMulti={true} options={countries} placeholder={labels[label]} onChange={e => handleChangeDrop(e)} key={ind} />
               }
             </>
           ))}

@@ -10,10 +10,14 @@ function CountrySelector() {
 
   useEffect( () => {
     // GET /Country
-    // Map country response to option object then set options
-
-
-  })
+    fetch("http://localhost:5001/Country", {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then( (result) => {
+        console.log(result);
+      })
+  }, [])
 
 
   return (
