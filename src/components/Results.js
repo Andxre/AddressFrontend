@@ -42,6 +42,7 @@ const ResultPage = () => {
 
   return (
     <div className='results'>
+    <h2>{result.length} Result(s) Found: </h2>
     { result.map((obj, index) => (
       <address className = 'address-result' key={index}> 
         <span>{obj.firstName} {obj.lastName}</span><br />
@@ -49,7 +50,7 @@ const ResultPage = () => {
         {obj.address2 !== "" && 
           <><span>{obj.address2}</span><br /></>
         }
-        <span>{obj.zone} {obj.city} {obj.postalCode}</span><br />
+        <span>{obj.city} {obj.zone} {obj.postalCode}</span><br />
       </address>
     ))}
 

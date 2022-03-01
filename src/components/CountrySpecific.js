@@ -41,7 +41,9 @@ const CountrySpecificForm = () => {
   useEffect(() => {
     fetch(`https://localhost:5001/Country/layout/${currentCountry}`)
     .then(res => res.json())
-    .then( (result) => {
+    .then( (results) => {
+      // Only supports 1 layout for now
+      const result = results[0]
       setLabels({
         firstName: result["firstName"],
         lastName: result["lastName"],
@@ -154,7 +156,7 @@ const CountrySpecificForm = () => {
       {formValues.length > 0 ? (
         <div className="button-section">
           <button className="button submit" type="submit">
-            Submit
+            Search
           </button>
         </div>
       ) : (

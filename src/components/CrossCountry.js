@@ -55,12 +55,6 @@ const CrossCountryForm = () => {
     postalCode: ""
   })
 
-  const options = [
-    { value: 840, label: 'United States of America' },
-    { value: 827, label: 'United Kingdom'},
-    { value: 123, label: 'Mexico'},
-    { value: 456, label: 'Brazil'}  
-  ]
 
   let handleChangeInput = (label, e) => {
     let updatedState = {}
@@ -104,7 +98,7 @@ const CrossCountryForm = () => {
           </div>
         ))}
         <div className="button-section">
-            <button className="button submit" type="submit">Submit</button>
+            <button className="button submit" type="submit">Search</button>
         </div>
     </form>
   </div>
