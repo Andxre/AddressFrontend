@@ -15,7 +15,7 @@ const ResultPage = () => {
       setResult(result)
     })
 
-  })
+  }, []);
 
   function convertToQuery(addressData) {
     let countryParam;
